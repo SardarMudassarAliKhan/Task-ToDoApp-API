@@ -4,7 +4,7 @@ using Task_ToDo_API_DAL.Models;
 
 namespace Task_ToDoApp_API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ToDoTasksController : ControllerBase
     {

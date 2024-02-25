@@ -24,6 +24,18 @@ namespace Task_ToDoApp_API
             builder.Services.AddScoped<ITodoTaskService, ToDoTaskService>();
             builder.Services.AddControllers();
 
+            // Add CORS policy to allow requests from all origins
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder
+                        .AllowAnyOrigin() // Allow requests from any origin
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
             // Configure Swagger/OpenAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -39,6 +51,10 @@ namespace Task_ToDoApp_API
 
             app.UseHttpsRedirection();
             app.UseAuthorization();
+
+            // Use CORS
+            app.UseCors();
+
             app.MapControllers();
 
             app.Run();
